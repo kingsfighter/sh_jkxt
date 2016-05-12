@@ -16,7 +16,6 @@ INSERT INTO `blog` VALUES ('3', 'test 2', 'test 2');
 INSERT INTO `blog` VALUES ('4', 'test 3', 'test 3');
 INSERT INTO `blog` VALUES ('5', 'test 4', 'test 4');
 
-drop table user;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL auto_increment,
   `userName` varchar(200) NOT NULL,
@@ -31,3 +30,28 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` VALUES ('1', 'admin', 'admin','管理员','男','admin@test.com','我是管理员');
 commit;
+
+
+CREATE TABLE `monitor_object_config` (
+  `id` int(11) NOT NULL auto_increment,
+  `appName` varchar(200) NOT NULL,
+  `appUrl` varchar(200) NOT NULL,
+  `appDesc` varchar(500) NULL,
+  `appStatus` int(1) NOT NULL, -- 0:shutdown,1:running
+  `accessCountMin` int(11) default 0 NULL,
+  `accessCountMax` int(11) default 100 NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `monitor_object_config` VALUES ('百度', 'http://www.baidu.com', '百度搜索',1,100，500);
+commit;
+
+
+CREATE TABLE `monitor_log` (
+  `id` int(11) NOT NULL auto_increment,
+  `objectId` int(11) NOT NULL,
+  `appName` varchar(200) NOT NULL,
+  `appStatus` int(1) NOT NULL, -- 0:shutdown,1:running
+  `accessCount` int(11) default 0 NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

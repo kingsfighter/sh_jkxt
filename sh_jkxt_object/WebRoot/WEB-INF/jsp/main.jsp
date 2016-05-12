@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>XXX系统</title>
+<title>监控对象管理系统</title>
 <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.4.4/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.4.4/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.4.4/demo/demo.css">
@@ -15,23 +15,11 @@
 	<div data-options="region:'north',border:false" style="height: 60px; background: #B3DFDA; padding: 10px">north region</div>
 
 	<div data-options="region:'west',split:true,title:'West'" style="width: 150px; padding: 10px;">
-		<div class="easyui-accordion" data-options="fit:true,border:false">
-			<div title="系统管理" data-options="selected:true" style="padding: 10px;">
-				<a href="javascript:void(0)" onclick="addTab('用户管理','/user')" class="easyui-linkbutton" style="width: 100%"
-					data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top'">用户管理</a> 
-				<a href="javascript:void(0)"
-					class="easyui-linkbutton" style="width: 100%" data-options="iconCls:'icon-large-shapes',size:'large',iconAlign:'top'">Shapes</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton" style="width: 100%"
-					data-options="iconCls:'icon-large-smartart',size:'large',iconAlign:'top'">SmartArt</a> 
-				<a href="javascript:void(0)"
-					class="easyui-linkbutton" style="width: 100%" data-options="iconCls:'icon-large-chart',size:'large',iconAlign:'top'">Chart</a>
-			</div>
-			<div title="测试1" style="padding: 10px;">测试1</div>
-			<div title="测试2" style="padding: 10px">测试2</div>
+		<div title="监控对象管理" data-options="selected:true" style="padding: 10px;">
+			<a href="javascript:void(0)" onclick="addTab('监控对象管理','/monitor')" class="easyui-linkbutton" style="width: 100%"
+				data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top',closeable:false">监控对象管理</a> 
 		</div>
 	</div>
-
-	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width: 100px; padding: 10px;">east region</div>
 
 	<div data-options="region:'south',border:false" style="height: 50px; background: #A9FACD; padding: 10px;">south region</div>
 

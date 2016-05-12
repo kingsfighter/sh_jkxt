@@ -24,30 +24,37 @@ function addTab(title, url) {
  * @param option
  * @param url
  */
-function showFormPage(title, option, url) {
+function showForm(title, option) {
 	var iconCls;
 	if ("edit" == option) {
 		var row = $("#tt").datagrid('getSelected');
-		url += "?id=" + row.id;
+		if(null == row){
+			$.messager.alert('警告', '请选择需要修改的记录！', 'error');
+			return false;
+		}
+		$("#fm").attr("action",'/monitor/edit');
+	}else{
+		$("#fm").attr("action",'/monitor/add');
 	}
 	$('#dlg').window({
 		title : title,
-		href : url,
 		width : '700',
 		height : '400',
 		left : '100px',
 		top : '70px',
 		iconCls : 'icon-edit',
 		modal : true,
-		closed : true
+		closed : false
 	}).window('open');
+	if ("edit" == option) {
+		loadForm();
+	}
 }
 
 function submitForm() {
 	$('#fm').form('submit', {
 		dataType : 'json',
 		success : function(data) {
-			alert(data);
 			data = $.parseJSON(data);
 			if (data.success) {
 				parent.$.messager.show({
@@ -55,8 +62,9 @@ function submitForm() {
 					msg : '提交表单成功'
 				});
 				$('#dlg').window('close');
+				$("#tt").datagrid('refresh');
 			} else {
-				parent.$.messager.alert('警告', '提交表单失败!', 'error');
+				$.messager.alert('警告', '提交表单失败!', 'error');
 			}
 		}
 	});
