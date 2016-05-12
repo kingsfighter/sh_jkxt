@@ -26,12 +26,14 @@ public class MonitorThread extends Thread {
     private void addLog() {
         List<MonitorObjectConfig> list = MonitorObjectConfig.dao.findAll();
         for (MonitorObjectConfig moc : list) {
-            MonitorLog log = new MonitorLog();
-            log.setObjectId(moc.getId());
-            log.setAccessCount(generateAccessCount(moc.getAccessCountMin(), moc.getAccessCountMax()));
-            log.setAppName(moc.getAppName());
-            log.setAppStatus(moc.getAppStatus());
-            log.save();
+            if(1==moc.getAppStatus()){
+                MonitorLog log = new MonitorLog();
+                log.setObjectId(moc.getId());
+                log.setAccessCount(generateAccessCount(moc.getAccessCountMin(), moc.getAccessCountMax()));
+                log.setAppName(moc.getAppName());
+                log.setAppStatus(moc.getAppStatus());
+                log.save();
+            }
         }
     }
 

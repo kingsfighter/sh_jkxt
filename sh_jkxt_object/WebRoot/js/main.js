@@ -33,6 +33,8 @@ function showForm(title, option) {
 			return false;
 		}
 		$("#fm").attr("action",'/monitor/edit');
+		$('#fm').form('reset');
+		loadForm();
 	}else{
 		$("#fm").attr("action",'/monitor/add');
 	}
@@ -46,9 +48,6 @@ function showForm(title, option) {
 		modal : true,
 		closed : false
 	}).window('open');
-	if ("edit" == option) {
-		loadForm();
-	}
 }
 
 function submitForm() {
@@ -62,7 +61,8 @@ function submitForm() {
 					msg : '提交表单成功'
 				});
 				$('#dlg').window('close');
-				$("#tt").datagrid('refresh');
+				$("#tt").datagrid('reload');
+				clearForm();
 			} else {
 				$.messager.alert('警告', '提交表单失败!', 'error');
 			}

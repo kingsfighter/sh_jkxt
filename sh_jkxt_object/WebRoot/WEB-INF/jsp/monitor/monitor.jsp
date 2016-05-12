@@ -16,8 +16,61 @@
 	function loadForm(){
 		var row = $("#tt").datagrid('getSelected');
 		$("#id").val(row.id);
-		$("#appName").val(row.appName);
+		$("#appName").textbox('setValue',row.appName);
+		$("#appName").textbox('setText',row.appName);
+		$("#appStatus").val(row.appStatus);
+		$("#accessCountMin").textbox('setText',row.accessCountMin);
+		$("#accessCountMin").textbox('setValue',row.accessCountMin);
+		$("#accessCountMax").textbox('setText',row.accessCountMax);
+		$("#accessCountMax").textbox('setValue',row.accessCountMax);
+		$("#appUrl").textbox('setText',row.appUrl);
+		$("#appUrl").textbox('setValue',row.appUrl);
+		$("#appDesc").val(row.appDesc);
 	}
+	
+	$(document).ready(function(){  
+		
+		
+	$("#tt").datagrid({
+			columns : [ [ {
+				field : 'id',
+				width : 50,
+				title : '网站ID'
+			}, {
+				field : 'appName',
+				width : 100,
+				title : '网站名称'
+			}, {
+				field : 'appStatus',
+				width : 100,
+				title : '网站状态',
+				formatter : function(val, rec) {
+					if (val == 1) {
+						return '<span style="color:green;font-weight:bold;">运行</span>';
+					} else {
+						return '<span style="color:red;font-weight:bold;">关闭</span>';
+					}
+				}
+			}, {
+				field : 'accessCountMin',
+				width : 100,
+				title : '最小访问量'
+			}, {
+				field : 'accessCountMax',
+				width : 100,
+				title : '最大访问量'
+			}, {
+				field : 'appUrl',
+				width : 200,
+				title : '网站URL'
+			}, {
+				field : 'appDesc',
+				width : 400,
+				title : '网站描述'
+			} ] ]
+		});
+
+	});
 </script>
 </head>
 <body>
