@@ -43,7 +43,10 @@ CREATE TABLE `monitor_object_config` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `monitor_object_config` VALUES ('百度', 'http://www.baidu.com', '百度搜索',1,100，500);
+INSERT INTO `monitor_object_config` (`id`,`appName`,`appUrl`,`appDesc`,`appStatus`,`accessCountMin`,`accessCountMax`) VALUES (1,'百度','http://www.baidu.com','百度搜索1',0,50,1000);
+INSERT INTO `monitor_object_config` (`id`,`appName`,`appUrl`,`appDesc`,`appStatus`,`accessCountMin`,`accessCountMax`) VALUES (3,'网易','www.163.com','大爱网易。',1,50,300);
+INSERT INTO `monitor_object_config` (`id`,`appName`,`appUrl`,`appDesc`,`appStatus`,`accessCountMin`,`accessCountMax`) VALUES (4,'新浪','www.sina.cn','新浪微博',1,500,1000);
+INSERT INTO `monitor_object_config` (`id`,`appName`,`appUrl`,`appDesc`,`appStatus`,`accessCountMin`,`accessCountMax`) VALUES (5,'知乎','www.zhihu.com','综合性网站',1,100,500);
 commit;
 
 
