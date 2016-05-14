@@ -19,6 +19,10 @@
 			<a href="javascript:void(0)" onclick="addTab('监控对象管理','/monitor')" class="easyui-linkbutton" style="width: 100%"
 				data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top',closeable:false">监控对象管理</a> 
 		</div>
+		<div title="监控报表" data-options="selected:true" style="padding: 10px;">
+			<a href="javascript:void(0)" onclick="addTab('监控报表','/monitor/chart')" class="easyui-linkbutton" style="width: 100%"
+				data-options="iconCls:'icon-large-chart',size:'large',iconAlign:'top',closeable:false">监控报表</a> 
+		</div>
 	</div>
 
 	<div data-options="region:'south',border:false" style="height: 50px; background: #A9FACD; padding: 10px;">south region</div>

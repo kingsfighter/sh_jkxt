@@ -1,7 +1,10 @@
 package com.demo.monitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.demo.common.model.MonitorLog;
 import com.demo.common.model.MonitorObjectConfig;
-import com.demo.common.model.User;
 import com.demo.common.result.Result;
 import com.demo.util.EasyuiUtil;
 import com.jfinal.core.Controller;
@@ -16,6 +19,12 @@ public class MonitorController extends Controller {
         render("monitor.jsp");
     }
 
+    public void chart(){
+        List<MonitorObjectConfig> monitors = MonitorObjectConfig.dao.findAll();
+        setAttr("monitors", monitors);
+        render("chart.jsp");
+    }
+    
     public void list() {
         Page<MonitorObjectConfig> page = MonitorObjectConfig.dao.paginate(getParaToInt(0, 1), 10);
         renderJson(EasyuiUtil.adapterEasyuiPage(page));
@@ -36,4 +45,33 @@ public class MonitorController extends Controller {
         MonitorObjectConfig.dao.deleteById(getParaToInt("id"));
         renderText(JsonKit.toJson(new Result()));
     }
+    
+    public void chartData(){
+        String appIds = getPara("appIds");
+        String[] apps = appIds.split(",");
+        Result result = new Result();
+        List list = new ArrayList();
+        for(int i=0;i<apps.length;i++){
+            Page<MonitorLog> logs = MonitorLog.dao.paginate1(1, 20,apps[i]);
+            if(null == logs.getList() || 0 == logs.getList().size()){
+                MonitorLog log = new MonitorLog();
+                MonitorObjectConfig obj = MonitorObjectConfig.dao.findById(apps[i]);
+                log.setAppName(obj.getAppName());
+                log.setObjectId(obj.getId());
+                log.setAccessCount(0);
+                logs.getList().add(log);
+            }
+            list.add(logs);
+        }
+        result.setData(list);
+        renderText(JsonKit.toJson(result));
+    }
+    
+    public void lastLog(){
+        String appIds = getPara("appIds");
+        List<MonitorLog> logs = MonitorLog.dao.getLastLog(appIds);
+        renderText(JsonKit.toJson(logs));
+    }
+    
+    
 }

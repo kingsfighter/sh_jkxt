@@ -7,12 +7,11 @@ import com.demo.common.model.MonitorLog;
 import com.demo.common.model.MonitorObjectConfig;
 
 public class MonitorThread extends Thread {
-    private static final long sleepTime = 5000l;
+    private static final long sleepTime = 2000l;
 
     @Override
     public void run() {
         while (true) {
-
             try {
                 addLog();
                 Thread.sleep(sleepTime);
@@ -26,14 +25,17 @@ public class MonitorThread extends Thread {
     private void addLog() {
         List<MonitorObjectConfig> list = MonitorObjectConfig.dao.findAll();
         for (MonitorObjectConfig moc : list) {
-            if(1==moc.getAppStatus()){
-                MonitorLog log = new MonitorLog();
-                log.setObjectId(moc.getId());
+            MonitorLog log = new MonitorLog();
+            log.setObjectId(moc.getId());
+
+            if (1 != moc.getAppStatus()) {
+                log.setAccessCount(0);
+            } else {
                 log.setAccessCount(generateAccessCount(moc.getAccessCountMin(), moc.getAccessCountMax()));
-                log.setAppName(moc.getAppName());
-                log.setAppStatus(moc.getAppStatus());
-                log.save();
             }
+            log.setAppName(moc.getAppName());
+            log.setAppStatus(moc.getAppStatus());
+            log.save();
         }
     }
 

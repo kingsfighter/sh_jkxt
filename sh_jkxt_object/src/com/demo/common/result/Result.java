@@ -1,6 +1,7 @@
 package com.demo.common.result;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Result implements Serializable{
     
@@ -11,6 +12,7 @@ public class Result implements Serializable{
     
     private boolean success = true;
     private String errorMsg;
+    private List data;
     
     public String getErrorMsg() {
         return errorMsg;
@@ -24,5 +26,10 @@ public class Result implements Serializable{
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    
+    public List getData() {
+        return data;
+    }
+    public void setData(List data) {
+        this.data = data;
+    }
 }
