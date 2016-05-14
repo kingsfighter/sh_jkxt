@@ -25,6 +25,7 @@ function addTab(title, url) {
  * @param url
  */
 function showForm(title, option) {
+	$("#option").val(option);
 	var iconCls;
 	if ("edit" == option) {
 		var row = $("#tt").datagrid('getSelected');
@@ -51,8 +52,15 @@ function showForm(title, option) {
 }
 
 function submitForm() {
+	var url = "";
+	if($("#option").val() == "edit"){
+		url = "/monitor/edit";
+	}else{
+		url = "/monitor/add";
+	}
 	$('#fm').form('submit', {
 		dataType : 'json',
+		url: url,
 		success : function(data) {
 			data = $.parseJSON(data);
 			if (data.success) {

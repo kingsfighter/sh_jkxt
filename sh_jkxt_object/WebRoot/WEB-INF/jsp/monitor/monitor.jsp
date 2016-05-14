@@ -136,6 +136,7 @@
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
 	    </div>
+	    <input type="hidden" id="option" ></input>
 	</div>
 </body>
 </html>
